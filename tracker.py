@@ -1,6 +1,11 @@
 import requests
 import smtplib
 from email.mime.text import MIMEText
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+# print("Password loaded:", os.getenv("APP_PASSWORD"))
 
 def get_github_activity(username):
     url = f"https://api.github.com/users/{username}/events"
@@ -20,7 +25,7 @@ def get_github_activity(username):
 def send_email(report):
     sender = "mrindia123aa@gmail.com"
     receiver = "mrindia123aa@gmail.com"
-    app_password = "exsg saew tres yonf"
+    app_password = os.getenv("APP_PASSWORD")
     
     msg = MIMEText(report)
     msg['Subject'] = "Your Weekly GitHub Activity Report"
